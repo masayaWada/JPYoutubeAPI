@@ -1,3 +1,2 @@
-# redesigned-umbrella
-test用リポジトリ
-これでDiscordに通知いくかな
+# JPYoutubeAPI
+YoutubeAPIの日本語版解説記入
