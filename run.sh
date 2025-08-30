@@ -22,37 +22,22 @@ echo
 
 # 実行可能なサンプルを表示
 echo "実行可能なサンプル:"
-echo "1. SimpleQuickstart (APIキー使用) - 推奨"
-echo "2. Quickstart (OAuth2認証)"
-echo "3. Search (動画検索)"
-echo "4. MyUploads (アップロード動画一覧)"
+echo "1. YouTubeChannelSearcher (APIキー使用) - 推奨"
 echo
 
 # 引数でサンプルを指定
 if [ $# -eq 0 ]; then
-    echo "SimpleQuickstartを実行します..."
+    echo "YouTubeChannelSearcherを実行します..."
     mvn exec:java
 else
     case $1 in
-        "1"|"simple")
-            echo "SimpleQuickstartを実行します..."
+        "1"|"demo")
+            echo "YouTubeChannelSearcherを実行します..."
             mvn exec:java
             ;;
-        "2"|"oauth")
-            echo "Quickstart (OAuth2)を実行します..."
-            mvn exec:java -Dexec.mainClass="com.google.api.services.samples.youtube.cmdline.data.Quickstart"
-            ;;
-        "3"|"search")
-            echo "Searchサンプルを実行します..."
-            mvn exec:java -Dexec.mainClass="com.google.api.services.samples.youtube.cmdline.data.Search"
-            ;;
-        "4"|"uploads")
-            echo "MyUploadsサンプルを実行します..."
-            mvn exec:java -Dexec.mainClass="com.google.api.services.samples.youtube.cmdline.data.MyUploads"
-            ;;
         *)
-            echo "使用方法: $0 [1|simple|2|oauth|3|search|4|uploads]"
-            echo "引数なしの場合はSimpleQuickstartを実行します"
+            echo "使用方法: $0 [1|demo]"
+            echo "引数なしの場合はYouTubeChannelSearcherを実行します"
             ;;
     esac
 fi

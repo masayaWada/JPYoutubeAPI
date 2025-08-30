@@ -4,18 +4,20 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.google.api.services.samples</groupId>
-  <artifactId>youtube-api-samples</artifactId>
+  <groupId>com.example</groupId>
+  <artifactId>youtube-api-demo</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>YouTube API Samples</name>
-  <description>YouTube Data API v3 Java Samples</description>
+  <name>YouTube API Demo</name>
+  <description>YouTube Data API v3 Java Demo Application</description>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
   </properties>
 
   <dependencies>
@@ -23,50 +25,52 @@
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client</artifactId>
-      <version>1.35.2</version>
+      <version>2.2.0</version>
     </dependency>
 
     <!-- Google OAuth2 Client -->
     <dependency>
       <groupId>com.google.oauth-client</groupId>
       <artifactId>google-oauth-client-jetty</artifactId>
-      <version>1.34.1</version>
+      <version>1.39.0</version>
     </dependency>
 
     <!-- Google HTTP Client -->
     <dependency>
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client-jackson2</artifactId>
-      <version>1.43.3</version>
+      <version>1.45.0</version>
     </dependency>
 
     <!-- Jackson for JSON processing -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.15.2</version>
+      <version>2.20.0</version>
     </dependency>
 
     <!-- Jackson Databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.15.2</version>
+      <version>2.20.0</version>
     </dependency>
 
     <!-- Jackson Annotations -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.15.2</version>
+      <version>2.18.2</version>
     </dependency>
 
     <!-- Apache Commons IO for file operations -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.11.0</version>
+      <version>2.20.0</version>
     </dependency>
+
+
 
     <!-- JUnit for testing -->
     <dependency>
@@ -93,6 +97,7 @@
         <configuration>
           <source>11</source>
           <target>11</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
 
@@ -102,7 +107,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>SimpleQuickstart</mainClass>
+          <mainClass>YouTubeChannelSearcher</mainClass>
           <classpathScope>compile</classpathScope>
         </configuration>
       </plugin>

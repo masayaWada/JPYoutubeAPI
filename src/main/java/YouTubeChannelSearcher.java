@@ -1,5 +1,3 @@
-package com.google.api.services.samples.youtube.cmdline.data;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
@@ -16,13 +14,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * YouTube Data API v3を使用したシンプルなクイックスタートサンプル
- * APIキーを使用してHTTP APIを直接呼び出します
+ * YouTube Data API v3を使用したチャンネル検索アプリケーション
+ * APIキーを使用してHTTP APIを直接呼び出し、YouTubeチャンネルを検索します
  */
-public class SimpleQuickstart {
+public class YouTubeChannelSearcher {
 
     /** アプリケーション名 */
-    private static final String APPLICATION_NAME = "YouTube API Simple Quickstart";
+    private static final String APPLICATION_NAME = "YouTube Channel Searcher";
 
     /** JSONファクトリのグローバルインスタンス */
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
@@ -61,7 +59,7 @@ public class SimpleQuickstart {
      */
     public static String getApiKey() throws IOException {
         Properties properties = new Properties();
-        InputStream inputStream = SimpleQuickstart.class.getResourceAsStream("/youtube.properties");
+        InputStream inputStream = YouTubeChannelSearcher.class.getResourceAsStream("/youtube.properties");
         if (inputStream == null) {
             throw new IOException("youtube.propertiesファイルが見つかりません");
         }
@@ -82,10 +80,20 @@ public class SimpleQuickstart {
      */
     public static String searchChannels(HttpRequestFactory requestFactory, String channelName) throws IOException {
         String encodedQuery = URLEncoder.encode(channelName, "UTF-8");
-        String url = YOUTUBE_API_BASE_URL + "/search?part=snippet&type=channel&q=" + encodedQuery + "&maxResults=5";
+        String url = YOUTUBE_API_BASE_URL + "/search?part=snippet&type=channel&q=" + encodedQuery + "&maxResults=5&order=relevance";
         
         HttpRequest request = requestFactory.buildGetRequest(new com.google.api.client.http.GenericUrl(url));
+        
+        // リクエストヘッダーを設定
+        request.getHeaders().setUserAgent(APPLICATION_NAME);
+        request.getHeaders().setAccept("application/json");
+        
         HttpResponse response = request.execute();
+        
+        // レスポンスステータスをチェック
+        if (response.getStatusCode() != 200) {
+            throw new IOException("APIリクエストが失敗しました。ステータス: " + response.getStatusCode());
+        }
         
         return response.parseAsString();
     }
@@ -132,8 +140,15 @@ public class SimpleQuickstart {
                 System.out.printf("作成日: %s\n", publishedAt);
             }
 
+        } catch (com.google.api.client.http.HttpResponseException e) {
+            System.err.println("HTTPエラーが発生しました: " + e.getStatusCode() + " " + e.getStatusMessage());
+            if (e.getContent() != null) {
+                System.err.println("エラー詳細: " + e.getContent());
+            }
+        } catch (IOException e) {
+            System.err.println("IOエラーが発生しました: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("エラーが発生しました: " + e.getMessage());
+            System.err.println("予期しないエラーが発生しました: " + e.getMessage());
             e.printStackTrace();
         }
     }
