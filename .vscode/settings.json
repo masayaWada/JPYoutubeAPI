@@ -1,8 +1,24 @@
 {
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.project.sourcePaths": ["java"],
+  "java.project.outputPath": "target/classes",
+  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-11",
+      "path": "/usr/lib/jvm/java-11-openjdk"
     }
+  ],
+  "java.executable.config": {
+    "java.home": "/usr/lib/jvm/java-11-openjdk"
+  },
+  "files.exclude": {
+    "**/target": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  }
 }
